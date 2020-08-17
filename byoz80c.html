@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Build Your Own Z80 Computer</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="build-your-own-z80-computer">Build Your Own Z80 Computer</h1>
+<h2 id="design-guidelines-and-application-notes">Design Guidelines and Application Notes</h2>
+<h2 id="by-steve-ciarcia">by Steve Ciarcia</h2>
+<h2 id="introduction">Introduction</h2>
+<p>Text</p>
+<h2 id="table-of-content">Table Of Content</h2>
+<ul>
+<li><a href="#build-your-own-z80-computer">Build Your Own Z80 Computer</a>
+<ul>
+<li><a href="#design-guidelines-and-application-notes">Design Guidelines and Application Notes</a></li>
+<li><a href="#by-steve-ciarcia">by Steve Ciarcia</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#table-of-content">Table Of Content</a></li>
+<li><a href="#chapter-1-power-supply">Chapter 1 Power Supply</a></li>
+<li><a href="#chapter-2-central-processor-basics">Chapter 2 Central Processor Basics</a></li>
+<li><a href="#chapter-3-the-z80-microprocessor">Chapter 3 The Z80 Microprocessor</a></li>
+<li><a href="#chapter-4-build-your-own-computer---start-with-the-basics">Chapter 4 Build Your Own Computer - Start With the Basics</a></li>
+<li><a href="#chapter-5-the-basic-peripherals">Chapter 5 The Basic Peripherals</a></li>
+<li><a href="#chapter-6-the-zap-operating-system">Chapter 6 The ZAP Operating System</a>
+<ul>
+<li><a href="#chapter-61-operating-system-functions">Chapter 6.1 Operating System Functions</a>
+<ul>
+<li><a href="#chapter-611-cold-start-operation">Chapter 6.1.1 Cold Start Operation</a></li>
+<li><a href="#chapter-612-warm-start-operation">Chapter 6.1.2 Warm Start Operation</a></li>
+</ul>
+</li>
+<li><a href="#chapter-62-operating-system-module-description">Chapter 6.2 Operating System Module Description</a>
+<ul>
+<li><a href="#chapter-621-warm-start-module">Chapter 6.2.1 Warm Start Module</a></li>
+<li><a href="#chapter-622-command-recognition-module">Chapter 6.2.2 Command Recognition Module</a></li>
+<li><a href="#chapter-623-restart-module">Chapter 6.2.3 Restart Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-7-programmin-an-eprom">Chapter 7 Programmin an EPROM</a></li>
+<li><a href="#chapter-8-connecting-zap-to-the-real-world">Chapter 8 Connecting ZAP to the Real World</a></li>
+<li><a href="#chapter-9-build-a-crt-terminal">Chapter 9 Build a CRT Terminal</a></li>
+<li><a href="#appendix-a-construction-techniques">Appendix A Construction Techniques</a></li>
+<li><a href="#appendix-b-ascii-codes">Appendix B ASCII Codes</a></li>
+<li><a href="#appendix-c-manufacturers-specification-sheets">Appendix C Manufacturers Specification Sheets</a></li>
+<li><a href="#appendix-d-zap-operating-system">Appendix D ZAP Operating System</a></li>
+<li><a href="#appendix-e-z80-cpu-technical-specifications">Appendix E Z80 CPU Technical Specifications</a></li>
+<li><a href="#glossary">Glossary</a></li>
+<li><a href="#index">Index</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="chapter-1-power-supply">Chapter 1 Power Supply</h2>
+<p>It's not enough to build a central processor card with a little input/output (I/O) and menmory, and call it a computer. From the time you walk over to the computer and flip the switch, the system is completely dependent upon the proper operation of its power supply.</p>
+<h2 id="chapter-2-central-processor-basics">Chapter 2 Central Processor Basics</h2>
+<p>Text</p>
+<h2 id="chapter-3-the-z80-microprocessor">Chapter 3 The Z80 Microprocessor</h2>
+<p>Text</p>
+<h2 id="chapter-4-build-your-own-computer---start-with-the-basics">Chapter 4 Build Your Own Computer - Start With the Basics</h2>
+<p>Text</p>
+<h2 id="chapter-5-the-basic-peripherals">Chapter 5 The Basic Peripherals</h2>
+<p>Text</p>
+<h2 id="chapter-6-the-zap-operating-system">Chapter 6 The ZAP Operating System</h2>
+<p>The function of an operating system is to provide the programmer with a set of tools to help him in developing, debugging and executing a program. In general, the operating system assists the programmer by managing the resources of the computer, and by eliminating his involvement woith repetitive machine-code manipulations. Operating systems span a broad sectrum of complexity. Small systems, for example, provide only a rudimentary means for a programmer to enter and read 8-bit data from memory; large systems, on the other hand, can dynamically manage the allocation of all memory and peripherals.
+Large systems allocate computer resources to more than one user in a multiprograming, multitasking, or a time sharing environment. A system of thsi mangnitude far exceeds the capabilities of the computer described in this book. This being the case, what would be a suitable operating system for the ZAP computer? As previously stated, the objective of an operating system is to manage the resources of the computer. The ZAP computer described here and enhanced with the minimum peripherals contains the following resources:</p>
+<ul>
+<li>Z80 microprocessor</li>
+<li>1024 bytes of EPROM memory</li>
+<li>1024 bytes of programmable memory</li>
+<li>Nineteen-key keyboard</li>
+<li>Two-charcter data display</li>
+<li>Four-character address display</li>
+<li>UART for serial I/O</li>
+</ul>
+<p>The operating system must provide access to these resources ans give the user a way to manage them during execution of programms. The operating systems designed for the ZAP computer will include the following facilities and functions:</p>
+<ul>
+<li>Cold start</li>
+<li>Warm start</li>
+<li>Memory displey and replace</li>
+<li>Register display and replace</li>
+<li>Execute</li>
+<li>Serial input and output</li>
+</ul>
+<p>Each will be explanined in detail concerning its functions and program implementation.</p>
+<h3 id="chapter-61-operating-system-functions">Chapter 6.1 Operating System Functions</h3>
+<h4 id="chapter-611-cold-start-operation">Chapter 6.1.1 Cold Start Operation</h4>
+<p>Text</p>
+<h4 id="chapter-612-warm-start-operation">Chapter 6.1.2 Warm Start Operation</h4>
+<h3 id="chapter-62-operating-system-module-description">Chapter 6.2 Operating System Module Description</h3>
+<h4 id="chapter-621-warm-start-module">Chapter 6.2.1 Warm Start Module</h4>
+<p>Text</p>
+<h4 id="chapter-622-command-recognition-module">Chapter 6.2.2 Command Recognition Module</h4>
+<p>Text</p>
+<h4 id="chapter-623-restart-module">Chapter 6.2.3 Restart Module</h4>
+<p>Text</p>
+<h2 id="chapter-7-programmin-an-eprom">Chapter 7 Programmin an EPROM</h2>
+<p>Text</p>
+<h2 id="chapter-8-connecting-zap-to-the-real-world">Chapter 8 Connecting ZAP to the Real World</h2>
+<p>Text</p>
+<h2 id="chapter-9-build-a-crt-terminal">Chapter 9 Build a CRT Terminal</h2>
+<p>Text</p>
+<h2 id="appendix-a-construction-techniques">Appendix A Construction Techniques</h2>
+<p>Text</p>
+<h2 id="appendix-b-ascii-codes">Appendix B ASCII Codes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Dec</th>
+<th style="text-align:right">Oct</th>
+<th style="text-align:right">Hex</th>
+<th style="text-align:left">Parity Space</th>
+<th style="text-align:left">Character</th>
+<th style="text-align:center">Control Keyboard Equivalent</th>
+<th style="text-align:left">Alternate Code Names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">000</td>
+<td style="text-align:right">000</td>
+<td style="text-align:right">00</td>
+<td style="text-align:left">Even</td>
+<td style="text-align:left">NUL</td>
+<td style="text-align:center">@</td>
+<td style="text-align:left">NULL, CTRL SHIFT P, TAPE LEADER</td>
+</tr>
+<tr>
+<td style="text-align:right">001</td>
+<td style="text-align:right">001</td>
+<td style="text-align:right">01</td>
+<td style="text-align:left">Odd</td>
+<td style="text-align:left">SOH</td>
+<td style="text-align:center">A</td>
+<td style="text-align:left">START OF HEADER, SOM</td>
+</tr>
+<tr>
+<td style="text-align:right">002</td>
+<td style="text-align:right">002</td>
+<td style="text-align:right">02</td>
+<td style="text-align:left">Odd</td>
+<td style="text-align:left">STX</td>
+<td style="text-align:center">B</td>
+<td style="text-align:left">START OF TEXT, EOA</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix-c-manufacturers-specification-sheets">Appendix C Manufacturers Specification Sheets</h2>
+<p>Text</p>
+<h2 id="appendix-d-zap-operating-system">Appendix D ZAP Operating System</h2>
+<pre><code><code><div>ZERO   EQU  0
+ONE    EQU  1
+TWO    EQU  2
+THREE  EQU  3
+FOUR   EQU  4
+FIVE   EQU  5
+EIGHT  EQU  8D
+ADDIS1 EQU  5   * MSDS ADDRESS DISPLAY PORT
+ADDIS2 EQU  6   * LSDS ADDRESS DISPLAY PORT
+DATDIS EQU  7   * DATA DISPLAY PORT
+EXECK  EQU 16D  * EXEC KEY
+NEXTK  EQU 32D  * NEXT KEY
+MEM    EQU 64D
+UARTIO EQU  2
+UARTST EQU  3
+KEYPRT EQU  0  * KEYBOARD INPUT PORT
+</div></code></code></pre>
+<pre><code><code><div>0000 31 C4 07         COLD    LD   SP,SPSTRT          * INITIALIZE STACK POINTER
+0003 C3 40 00                 JP   WARM01
+</div></code></code></pre>
+<pre><code><code><div>0040 ED 73 DB 07      WARM01  LD   (SPLSAV),SP
+0044 C3 89 00                 JP   WARM2              * GOTO COMMAND RECOGNITION  
+</div></code></code></pre>
+<pre><code><code><div>0089 CD F1 00         WARM2   CALL CLDIS              * CLEAR DISPLAY
+008C 3E FF                    LD   A,255D
+008E D3 05                    OUT  ADDIS1,A
+0090 D3 06                    OUT  ADDIS2,A
+0092 D3 07                    OUT  DATDIS,A
+0094 CD 03 01                 CALL KEYIN              * GET INPUT CHARACTER
+0097 06 40                    LD   B,MEM
+0099 B8                       CP   B
+009A CA F1 01                 JP   Z,MEMORY           * JUMP IF MEMORY REQUEST
+009D 04                       INC  B
+009E B8                       CP   B
+009F CA 4B 02                 JP   Z,REGIST           * JUMP IF REGISTER REQUEST
+00A2 04                       INC  B
+00A3 B8                       CP   B
+00A4 CA 10 03                 JP   Z,RUN              * JUMP IF RUN REQUEST
+00A7 C3 89 00                 JP   WARM2
+</div></code></code></pre>
+<pre><code><code><div>00F1 3E 00            CLDIS   LD   A,ZERO
+00F3 32 F1 07                 LD   (KFLAGS),A         * CLEAR FLAGS
+00F6 32 F2 07                 LD   (KDATA1),A         * CLEAR BUFFER
+00F9 32 F3 07                 LD   (KDATA2),A
+00FC D3 07                    OUT  DATDIS,A           * CLEAR DATA FIELD DISPLAY
+00FE D3 05                    OUT  ADDIS1,A           * CLEAR ADDRESS FIELD DISPLAY
+0100 D3 06                    OUT  ADDIS2,A
+0102 C9                       RET
+</div></code></code></pre>
+<pre><code><code><div>0103 DB 00            KEYIN   IN   A,KEYPRT           * INPUT DATA
+0105 CB 03 01                 BIT  7,A
+0107 CA 03 01                 JP   Z,KEYIN            * LOOP IF NO DATA
+010A 32 F4 07                 LD   (TEMP1),A          * SAVE CHARACTER
+010D DB 00            KEYIN1  IN   A,KEYPRT
+010F CB 7F                    BIT  7,A
+0111 C2 0D 01                 JP   NZ,KEYIN1          * JUMP IF STROBE PRESENT
+0114 3A F4 07                 LD   A,(TEMP1)
+0117 CB BF                    RES  7,A                * CLEAR STROBE
+0119 C9                       RET
+</div></code></code></pre>
+<pre><code><code><div>015D 06 20            CARCK1  LD   B,NEXTK            * CHECK FOR NEXT KEY
+015F B8                       CP   B
+0160 CA 1A 01                 JP   Z,KFLGO2           * IF NEXT JUMP
+</div></code></code></pre>
+<pre><code><code><div>01A0 3E 00            CLDAT   LD   A,ZERO
+01A2 32 F1 07                 LD   (KFLAGS),A         * CLEAR FLAGS
+01A5 32 F2 07                 LD   (KDATA1),A         * CLEAR BUFFER
+01A8 32 F3 07                 LD   (KDATA2),A
+01AB C9                       RET
+</div></code></code></pre>
+<pre><code><code><div>01AC 3E 00            CLADD   LD   A,ZERO             * CLEAR ADDRESS FIELD DISPLAY
+01AE 32 F1 07                 OUT  ADDIS1
+01B0 32 F2 07                 LD   ADDIS2
+01B2 32 F3 07                 RET
+</div></code></code></pre>
+<pre><code><code><div>01B3 CD A0 01         FORCAR  CALL CLDAT              * CLEAR FLAGS AND BUFFER
+01B6 CD 03 01                 CALL KEYIN              * GET INPUT CHARACTER
+01B9 CD 5D 01                 CALL CARCK1             * CHECK FOR NEXT OR EXEC KEY
+
+</div></code></code></pre>
+<pre><code><code><div>01F1 3E 00            MEMORY  LD   A,ZERO
+
+</div></code></code></pre>
+<pre><code><code><div>024B CD 3A 01         REGIST  CALL ONECAR
+
+</div></code></code></pre>
+<pre><code><code><div>0310 CD AC 01         RUN     CALL CLADD
+0313 CD B3 01                 CALL FORCAR             * GET RESTART ADDRESS
+</div></code></code></pre>
+<pre><code><code><div>07C4 00               SPSTRT  DB   0
+
+07DB 00               SPLSAV  DB   0
+07DE 00               SPHSAV  DB   0
+
+07F1 00               KFLAGS  DB   0
+07F2 00               KDATA1  DB   0
+07F3 00               KDATA2  DB   0
+07F4 00               TEMP1   DB   0
+07F5 00               TEMP2   DB   0
+07F6 00               MBASE1  DB   0
+07F7 00               MBASE2  DB   0
+</div></code></code></pre>
+<h2 id="appendix-e-z80-cpu-technical-specifications">Appendix E Z80 CPU Technical Specifications</h2>
+<p>Text</p>
+<h2 id="glossary">Glossary</h2>
+<p><strong>Accumulator</strong> A temorary register where results of calculations may be stored by the central processor. One or more accumulators may be part of the arithmentic-logical unit.</p>
+<p><strong>Acoustal coupler</strong> A device that permits a terminal to be connected to the computer via a telephone line. It connects to the telephone handset.</p>
+<p><strong>Address</strong> An identifying number or label for locations in the memory</p>
+<p><strong>Algorithm</strong> A step-by-step solution to a problem in a finite number of steps. A specific procedure for accomplishing a desired result.</p>
+<p><strong>ASCII</strong> American Standard Code for Information Interchange. Widely used 7-bit standard code. Also known as USASCII; IBM uses EBCDIC, which has 8 bits.</p>
+<p><strong>Assembler</strong> A program that converts symbolic instructions into machine macro-instructions</p>
+<p><strong>Backplane</strong> A board equipped with plugs interconnected by buses into which the modules which make up a computer may be inserted. Also known as a motherboard.</p>
+<h2 id="index">Index</h2>
+
+    </body>
+    </html>
